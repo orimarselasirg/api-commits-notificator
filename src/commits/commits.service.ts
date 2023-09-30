@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-// import { GitResponse } from './commits.entity';
 import { HttpService } from '@nestjs/axios';
 import { GitResponse, DataCommits, frontendResponse } from './commits.entity';
 import {Octokit} from 'octokit'
@@ -9,7 +8,7 @@ export class CommitsService {
   constructor(private readonly httpService: HttpService){}
 
   octokit = new Octokit({
-    auth: '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'
+    auth: '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'
   })
    async getAllCommits(repoName: string): Promise<frontendResponse[]> {
     try {
@@ -17,7 +16,8 @@ export class CommitsService {
         owner: "orimarselasirg",
         repo: repoName ? repoName : "commitNotificator",
       }) as GitResponse
-      const newData: frontendResponse[] = res.data.map((e: DataCommits) => ({
+      // console.log(res);
+      const frontendStructureData: frontendResponse[] = res.data.map((e: DataCommits) => ({
         name: e.author.login,
         avatar: e.author.avatar_url,
         mail: e.commit.author?.email,
@@ -26,7 +26,7 @@ export class CommitsService {
         created: e.commit.author.date,
       }));
 
-      return newData
+      return frontendStructureData
     } catch (error) {
       return Promise.reject(error)
     }
