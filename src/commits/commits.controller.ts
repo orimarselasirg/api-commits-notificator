@@ -7,6 +7,6 @@ export class CommitsController {
   constructor(private commitService: CommitsService){}
   @Get()
   getCommitsData() {
-    return this.commitService.getAllCommits()
+    return this.commitService.getAllCommits('commitNotificator')
   }
 }
