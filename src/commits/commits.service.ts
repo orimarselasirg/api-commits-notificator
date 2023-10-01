@@ -10,7 +10,7 @@ export class CommitsService {
   octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
   })
-   async getAllCommits(repoName: string): Promise<frontendResponse[]> {
+   async getAllCommits(repoName: string): Promise<frontendResponse[] | object> {
     try {
       const res = await  this.octokit.request("GET /repos/{owner}/{repo}/commits",{
         owner: "orimarselasirg",
@@ -24,10 +24,13 @@ export class CommitsService {
         url: e.html_url,
         created: e.commit.author.date,
       }));
-
       return frontendStructureData
     } catch (error) {
-      return Promise.reject(error)
+      return({
+        success: false,
+        message: 'there is an error, please contact the administrator',
+        error: error
+      })
     }
   }
 
