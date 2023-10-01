@@ -7,13 +7,14 @@ import {Octokit} from 'octokit'
 export class CommitsService {
   constructor(private readonly httpService: HttpService){}
 
+  
   octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
   })
-   async getAllCommits(repoName: string): Promise<frontendResponse[] | object> {
+  async getAllCommits(repoName: string): Promise<frontendResponse[] | object> {
     try {
       const res = await  this.octokit.request("GET /repos/{owner}/{repo}/commits",{
-        owner: "orimarselasirg",
+        owner: process.env.OWNER,
         repo: repoName ? repoName : "commitNotificator",
       }) as GitResponse
       const frontendStructureData: frontendResponse[] = res.data.map((e: DataCommits) => ({
@@ -28,8 +29,9 @@ export class CommitsService {
     } catch (error) {
       return({
         success: false,
-        message: 'there is an error, please contact the administrator',
-        error: error
+        status: error.status,
+        message: error.response?.data?.message,
+        error: error.response
       })
     }
   }
