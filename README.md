@@ -1,74 +1,176 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Commits Notificator Api
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Commits Notificator API" is an API created and designed using the NestJs framework. It provides a communication system with a REST architecture.
 
-## Description
+This API consumes the GitHub API to offer information related to the commit history of the owner of a GitHub repository.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Requirements
+
+This project works with a Node.js version >= 18. To validate the version and check if Node.js is installed, you can use the following command in your preferred terminal:
+
+
+```
+node -v
+```
+
+Running this command will display the installed Node.js version. If it's 18 or higher, you're good to go for this project. If it's not installed or the version is lower, you may need to install a newer version of Node.js to work with this project. to install click here [node]
+(https://nodejs.org/)
+
+If you prefer to use Yarn as your package manager, you can check if it's installed by using the following command in your preferred terminal:
+
+```
+yarn -v
+```
+Running this command will display the installed Yarn version if it's installed. If Yarn is not installed, you can follow the official Yarn installation instructions to install it on your system. to install click here [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#windows-stable)
+
+It might also be necessary to use software like Postman or Insomnia to make requests to the endpoints, which you can download from the following links.
+
+[Postman](https://www.postman.com/downloads/)
+
+[Insomnia](https://insomnia.rest/download)
+
+### GitHub API
+
+If you wish to run the project on your local machine and test the API with your own repositories, it's necessary to enable an authorization token for the GitHub API. This token will be used in the project's environment variables.
+
+To do this, you should click on your profile picture at the top right to open your profile options.
+
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/5e1ffcee-e63f-413f-a263-3997f9489268)
+
+Afterward, you should navigate to the settings.
+
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/5c8e321f-2720-4aa8-a91d-f3eb7538d27a)
+
+In the last option on the left-hand side of the screen, you will find developer settings, and you should click on it.
+
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/709c5786-2210-4741-a8d2-17bdafa57693)
+
+Once you are there, you will see the following screen, and you should click on the "Classic token" option.
+
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/4dbed499-4138-4b10-a5ec-2c3d034eefe5)
+
+And if you don't have a token generated, you should click on the "Generate token" option.
+
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/b2dd84e6-d5fd-4f80-8410-d1c11c54a70c)
+
+Then it will ask for your GitHub password and take you to this screen, where you can configure all the access and options that the token will have.
+
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/8153181f-fb91-475e-83b6-3c8715168d33)
+
+Finally, you should click on "Generate" to generate the token.
+
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/e35d6a9f-7d99-418a-8a37-6bb3d0f36d3e)
+
+It's important to save that token in a secure place and not share it with anyone if you have granted write and delete permissions.
 
 ## Installation
 
+This project can be installed using npm or yarn.
+
+In your command-line interface, you can use the following lines of code:
+
+via npm
 ```bash
-$ npm install
+npm install
+```
+via yarn
+```bash
+yarn
 ```
 
-## Running the app
+## Environment Variables
 
+To run this project, you will need to create a .env file in the project's root folder and add the following environment variables:
+
+`PORT`
+
+Here, you should place the port number on which you want to run the project.
+
+`GITHUB_TOKEN`
+
+Here, you should place the token generated by the GitHub API.
+
+`OWNER`
+
+Here, you should enter your GitHub username.
+
+Additionally, an email will be sent with all these values to the evaluator of this project.
+
+
+## Running the project
+
+To start the project in development mode, you should run the following code in your command-line interface:
+
+using npm
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run start:dev
 ```
 
-## Test
-
+using yarn
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+yarn start:dev
 ```
 
-## Support
+The project will start shortly, and within the console, it will appear as follows:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/909c668f-e3b5-4688-9f3a-3745df2b3c5f)
 
-## Stay in touch
+You will receive a confirmation message that says "Application running on: http://[::1]:8080," 
+and the port it displays will be the one you previously set in the PORT environment variable.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+## API Reference
 
-Nest is [MIT licensed](LICENSE).
-# api-commits-notificator
+To use the API, you can directly test it from your web browser or through tools like [Postman](https://www.postman.com/downloads/) or [Insomnia](https://insomnia.rest/download).
+
+For the queries, you should enter the base URL in the address bar of your web browser/Postman/Insomnia, and it would look something like this:
+
+```
+http://localhost:8080/api/v1
+```
+
+Later, you can write the following endpoints.
+
+### Endpoints
+
+-  Get all repository owner
+```
+/repo-list
+```
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/1322d575-f9f7-4993-898d-2edf652be00a)
+
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/375c0b29-0bb3-482c-ad86-d0cedd65a0f6)
+
+You will receive an array of objects with the data structure designed in the code.
+
+-  Get all repositories's commits
+
+```
+/repo?name=${repoName}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `repoName`| `string` | **Required**. repository to fetch |
+
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/e51ab466-a455-44a3-a70d-5de6f096bab9)
+![image](https://github.com/orimarselasirg/api-commits-notificator/assets/84402210/2857ff70-66a4-4d43-8761-5bebec4e7d07)
+
+You will receive an object, and inside it, there will be a 'data' property that will contain an array of objects with the data structure designed in the code
+
+## FAQ
+
+#### Can I query my repositories??
+
+Yes, as long as in this environment variable:
+```
+OWNER
+```
+you put your GitHub username, and you are the owner of the created repositories
+
+and in this variable GITHUB_TOKEN, you have the classic token for your user.
+
+
+## Authors
+
+- [@orimarselasirg](https://github.com/orimarselasirg)
